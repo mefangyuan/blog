@@ -1,1 +1,41 @@
-theme: jekyll-theme-cayman
+# Configurations
+title:            My Blog
+longtitle:        我的博客 | My Blog
+author:           Wang FangYuan
+email:            mefangyuan@gmail.com
+description: >
+  开发日志
+
+version:          1.0
+gitbook_version:  3.2.3
+
+url:              'https://mefangyuan.github.io'
+baseurl:          '/blog'
+rss:              RSS
+
+# markdown render engine.
+markdown:         kramdown
+kramdown:
+  auto_ids:               true
+  input:                  GFM
+  math_engine:            mathjax
+  smart_quotes:           lsquo,rsquo,ldquo,rdquo
+  toc_levels:             1..6
+  syntax_highlighter:     rouge
+  syntax_highlighter_opts:
+    guess_lang:           true
+
+markdown_ext:     markdown,mkdown,mkdn,mkd,md
+
+# Permalinks
+permalink:        /:categories/:year-:month-:day-:title:output_ext
+
+exclude:
+  - _drafts
+
+destination:      ./_site
+incremental:      false
+regenerate:       true
+
+plugins:
+  - jemoji
