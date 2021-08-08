@@ -24,7 +24,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
+title: 欢迎来到方圆技术博客
 email: mefangyuan@gmail.com
 author: Wang FangYuan
 copyright: Copyright © 1970-2021
