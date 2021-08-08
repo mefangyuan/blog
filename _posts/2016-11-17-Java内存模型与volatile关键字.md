@@ -10,11 +10,12 @@ tags: [JVM]
 
 # 1 Java内存模型(JMM)的意义
 
-![](https://upload-images.jianshu.io/upload_images/4685968-92a1fdf48be19e06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-92a1fdf48be19e06.png)
 ![](https://upload-images.jianshu.io/upload_images/4685968-23e5e9a49adeb5a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![JMM 与硬件内存架构对应关系](https://upload-images.jianshu.io/upload_images/4685968-5e1374a0abf9c929.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![JMM 与硬件内存架构对应关系](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-5e1374a0abf9c929.png)
 ![JMM抽象结构图](https://upload-images.jianshu.io/upload_images/4685968-d4ea8843a88a940d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 Java虚拟机规范中试图定义一种Java内存模型来屏蔽掉各种硬件和操作系统的内存访问差异，规定
+
 - 线程如何,何时能看到其他线程修改过的共享变量的值
 - 在必要时如何同步地访问共享变量
 
@@ -34,8 +35,8 @@ JMM`规定`
 线程对变量的所有操作(读，赋值等)都必须在工作内存中进行，不能直接读写主内存中的变量
 volatile变量依然有工作内存的拷贝,只是他特殊的操作顺序性规定,看起来如同直接在主内存读写
 不同线程之间无法直接访问对方工作内存中的变量，线程间变量值的传递均要通过主内存
-![线程、主内存、工作内存三者的交互关系](https://upload-images.jianshu.io/upload_images/4685968-12209b12d578a2ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![](https://upload-images.jianshu.io/upload_images/4685968-bb3d37c155cd82d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![线程、主内存、工作内存三者的交互关系](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-12209b12d578a2ed.png)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-bb3d37c155cd82d8.png)
 
 JVM模型与JMM不是同一层次的内存划分，基本是没有关系的，硬要对应起来，从变量，内存，工作内存的定义来看
   - 主内存 === Java堆中的对象实例数据部分
@@ -64,7 +65,7 @@ unlock之前必须将变量值同步回主内存
 作用于工作内存变量，把工作内存中一个变量的值传送到主内存，以便随后的write操作使用
 - write(写入)
 作用于主内存变量，把store操作从工作内存中得到的值放入主内存的变量中
-![JMM 同步操作](https://upload-images.jianshu.io/upload_images/4685968-9dd14e316ab68184.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![JMM 同步操作](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-9dd14e316ab68184.png)
 - 把一个变量从主内存`复制`到工作内存
 就要顺序执行read和load
 
@@ -260,9 +261,9 @@ doSomethingWithConfig();
 
 volatile变量读操作性能消耗与普通变量几乎无差,但写操作则可能会稍慢，因为它需要在代码中插入许多内存屏障指令来保证处理器不发生乱序执行
 不过即便如此，大多数场景下volatile的总开销仍然要比锁小，我们在volatile与锁之中选择的`唯一依据仅仅是volatile的语义能否满足使用场景的需求`
-![单例模式](https://upload-images.jianshu.io/upload_images/4685968-da1ded2979016345.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![字节码指令](https://upload-images.jianshu.io/upload_images/4685968-c1ddcbde64dfe68d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![汇编指令](https://upload-images.jianshu.io/upload_images/4685968-63333e96dda3f0aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![单例模式](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-da1ded2979016345.png)
+![字节码指令](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-c1ddcbde64dfe68d.png)
+![汇编指令](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-63333e96dda3f0aa.png)
 `volatile`修饰的变量，赋值后(前面`mov %eax,0x150 (%esi)` 这句便是赋值操作) 多执行了一个`1ock add1 $ 0x0,(%esp)`,这相当于一个内存屏障(Memory Barrier/Fence,指重排序时不能把后面的指令重排序到内存屏障之前的位置),只有一个CPU 访问内存时,并不需要内存屏障
 但如果有两个或更多CPU 访问同一块内存,且其中有一个在观测另一个,就需要内存屏障来保证一致性了
 
@@ -290,11 +291,11 @@ double pi  = 3.14;    //A
 double r   = 1.0;     //B  
 double area = pi * r * r; //C  
 ```
-![三个操作的数据依赖关系](http://upload-images.jianshu.io/upload_images/4685968-73d51df8127c3f33?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![三个操作的数据依赖关系](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-73d51df8127c3f33)
 A和C之间存在数据依赖关系，同时B和C之间也存在数据依赖关系。
 因此在最终执行的指令序列中，C不能被重排序到A和B的前面（C排到A和B的前面，程序的结果将会被改变）。
 但A和B之间没有数据依赖关系，编译器和处理器可以重排序A和B之间的执行顺序
-![该程序的两种执行顺序](http://upload-images.jianshu.io/upload_images/4685968-d3ab423cc91a8857?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![该程序的两种执行顺序](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-d3ab423cc91a8857)
 这里所说的数据依赖性仅针对**单个处理器中执行的指令序列和单个线程中执行的操作**，在单线程程序中，对存在控制依赖的操作重排序，不会改变执行结果
 但在**多线程程序中，**对存在控制依赖的操作重排序，可能会改变程序的执行结果。这是就需要**内存屏障来保证可见性了**
 

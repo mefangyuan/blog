@@ -9,7 +9,7 @@ tags: [并发]
 
 
 #1 Java中的阻塞队列
-![](https://upload-images.jianshu.io/upload_images/4685968-cbf23e2eb43aceed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-cbf23e2eb43aceed.png)
 ##1.1 简介
 一种支持两个附加操作的队列,是一系列阻塞队列类的接口
 当存取条件不满足时,阻塞在操作处
@@ -18,8 +18,8 @@ tags: [并发]
  - 队列空时,获取元素的线程会等待队列非空
 
 阻塞队列常用于生产者/消费者场景,生产者是向队列里存元素的线程,消费者是从队列里取元素的线程.阻塞队列就是生产者存储元素、消费者获取元素的容器
-![BlockingQueue继承体系](http://upload-images.jianshu.io/upload_images/4685968-9e7f1b6c305819cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![阻塞队列不可用时,两个附加操作提供了4种处理方式](http://upload-images.jianshu.io/upload_images/4685968-a29ee4f281eb03ad?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![BlockingQueue继承体系](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-9e7f1b6c305819cc.png)
+![阻塞队列不可用时,两个附加操作提供了4种处理方式](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-a29ee4f281eb03ad)
  - ***抛出异常***
     -  当队列满时,如果再往队列里插入元素,会抛出IllegalStateException("Queuefull")异常
    - 当队列空时，从队列里获取元素会抛出NoSuchElementException异常
@@ -134,7 +134,7 @@ class Consumer implements Runnable {
 代码中还用到了AtomicInteger原子整数，用来确保产品的编号不会混乱
 
 # 2 **Java里的阻塞队列**
-![BlockingQueue的实现类](http://upload-images.jianshu.io/upload_images/4685968-d05fd46243a9bf6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![BlockingQueue的实现类](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-d05fd46243a9bf6f.png)
 至JDK8,Java提供了7个阻塞队列
 - ArrayBlockingQueue：数组结构组成的有界阻塞队列
 - LinkedBlockingQueue：链表结构组成的有界(默认MAX_VALUE容量)阻塞队列
@@ -144,7 +144,7 @@ class Consumer implements Runnable {
 - LinkedTransferQueue：链表结构的TransferQueue,无界阻塞队列
 - LinkedBlockingDeque：链表结构的双向阻塞队列
 ## 2.1 LinkedBlockingQueue和ArrayBlockingQueue
-![](https://upload-images.jianshu.io/upload_images/4685968-469fae51c96576fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-469fae51c96576fd.png)
 ![](https://upload-images.jianshu.io/upload_images/4685968-a8d5673e8779077b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 基于数组的阻塞队列实现，在`ArrayBlockingQueue`内部，维护了一个定长数组，以便缓存队列中的数据对象，这是一个常用的阻塞队列，除了一个定长数组外，ArrayBlockingQueue内部还保存着两个整形变量，分别标识着队列的头部和尾部在数组中的位置。
 
@@ -164,9 +164,9 @@ class Consumer implements Runnable {
 ```
 ArrayBlockingQueue fairQueue = new ArrayBlockingQueue(1000,true);
 ```
-![访问者的公平性是使用可重入锁实现的](http://upload-images.jianshu.io/upload_images/4685968-1e4244e433e8c991.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![访问者的公平性是使用可重入锁实现的](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-1e4244e433e8c991.png)
 ##2.2  SynchronousQueue同步队列
-![](https://upload-images.jianshu.io/upload_images/4685968-37f19ec95f4dbe98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-37f19ec95f4dbe98.png)
 
 比较特殊的阻塞队列，它具有以下几个特点： 
 1. 一个插入方法的线程必须等待另一个线程调用取出 
@@ -245,7 +245,7 @@ public class SynchronizeQueueExam {
 }
 ```
 ##2.3  PriorityBlockingQueue优先级阻塞队列 
-![](https://upload-images.jianshu.io/upload_images/4685968-1873eb6013d54379.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-1873eb6013d54379.png)
 1. 队列中的元素总是按照“自然顺序”排序，或者根据构造函数中给定的Comparator进行排序
 2. 队列中不允许存在null，也不允许存在不能排序的元素 
 3. 对于排序值相同的元素，其序列是不保证的，当然你可以自己扩展这个功能 
@@ -337,14 +337,14 @@ public class PriorityBlockingQueueExam {
 ```
 ##2.4  DelayQueue
 队列中只能存入Delayed接口实现的对象
-![DelayQueue](http://upload-images.jianshu.io/upload_images/4685968-66f774931c2df19a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![DelayQueue](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-66f774931c2df19a.png)
 
-![](http://upload-images.jianshu.io/upload_images/4685968-e9e3297ac26ca792.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-e9e3297ac26ca792.png)
 ![](http://upload-images.jianshu.io/upload_images/4685968-57058c0b0980efe6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 DelayQueue中存入的对象要同时实现getDelay和compareTo
 - getDelay方法是用来检测队列中的元素是否到期
 - compareTo方法是用来给队列中的元素进行排序
-![DelayQueue持有一个PriorityBlockingQueue](http://upload-images.jianshu.io/upload_images/4685968-9d79acebc32249fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![DelayQueue持有一个PriorityBlockingQueue](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-9d79acebc32249fb.png)
 每个Delayed对象实际上都放入了这个队列，并按照compareTo方法进行排序
 
 当队列中对象的getDelay方法返回的值<=0（即对象已经超时）时，才可以将对象从队列中取出

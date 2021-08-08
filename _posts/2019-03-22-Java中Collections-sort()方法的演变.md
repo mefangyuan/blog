@@ -32,7 +32,7 @@ Java7 运行效果
 3
 ```
 Java8 运行效果 
-![](http://upload-images.jianshu.io/upload_images/4685968-dd0b824ef1f2c8e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-dd0b824ef1f2c8e4.png)
 
 
 #结果分析
@@ -75,7 +75,7 @@ public static <T extends Comparable<? super T>> void sort(List<T> list) {
   list.sort(null);
 }
 ArrayList的sort方法实现如下：
-![](http://upload-images.jianshu.io/upload_images/4685968-cba099d83fb00e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-cba099d83fb00e29.png)
 可以看出最后一行，modCount++修改了modCount字段
 所以checkForComodification方法会抛出异常
 

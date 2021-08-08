@@ -56,6 +56,7 @@ Plate<？ extends Fruit>
 **这和我们人类的逻辑就比较接近了
 Plate<？ extends Fruit>和Plate<Apple>最大的区别就是：**Plate<？ extends Fruit>是Plate<Fruit>及Plate<Apple>的基类
 **直接的好处就是，我们可以用“*苹果盘*”给“*水果盘*”赋值了
+
 ```
 Plate<? extends Fruit> p = new Plate<Apple>(new Apple());
 ```
@@ -80,7 +81,8 @@ class GreenApple extends Apple{}
 
 ```
 在这个体系中，上界通配符`Plate<？ extends Fruit>`覆盖下图中蓝色的区域
-![](https://upload-images.jianshu.io/upload_images/4685968-d81db3fcf40a62bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-d81db3fcf40a62bf.png)
+
 # **3 下界**
 相对应的下界通配符（Lower Bounds Wildcards）
 
@@ -90,7 +92,7 @@ Plate<？ super Fruit>
 表达的就是相反的概念：**一个能放水果以及一切是水果基类的盘子**
 Plate<？ super Fruit>是Plate<Fruit>的基类，但不是Plate<Apple>的基类
 对应刚才那个例子，Plate<？ super Fruit>覆盖下图中红色的区域。
-![](https://upload-images.jianshu.io/upload_images/4685968-d58e1ca63eb102fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-d58e1ca63eb102fc.png)
 #  **4 上下界通配符的副作用**
 边界让Java不同泛型之间的转换更容易了。但不要忘记，这样的转换也有一定的副作用。那就是容器的部分功能可能失效。
 

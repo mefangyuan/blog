@@ -15,7 +15,7 @@ tags: [Fork/Join]
 # 1\. 简介
 `Fork/Join`并行方式是获取良好的并行计算性能的一种最简单同时也是最有效的设计技术。
 `Fork/Join`并行算法是我们所熟悉的分治算法的并行版本，典型的用法如下：
-![](https://upload-images.jianshu.io/upload_images/4685968-15712a0db6dbdb99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-15712a0db6dbdb99.png)
 `fork`将会启动一个新的并行`Fork/Join`子任务
 `join`会一直等待直到所有的子任务都结束。
 `Fork/Join`算法，如同其他分治算法一样，总是会递归的、反复的划分子任务，直到这些子任务可以用足够简单的、短小的顺序方法来执行。
@@ -28,7 +28,7 @@ tags: [Fork/Join]
 简而言之，`Java`标准的线程框架对`Fork/Join`程序而言太笨重了。但是既然线程构成了很多其他的并发和并行编程的基础，完全消除这种代价或者为了这种方式而调整线程调度是不可能（或者说不切实际的）。
 
 尽管这种思想已经存在了很长时间了，但是第一个发布的能系统解决这些问题的框架是`Cilk`<sup>[5]</sup>。`Cilk`和其他轻量级的框架是基于操作系统的基本的线程和进程机制来支持特殊用途的`Fork/Join`程序。这种策略同样适用于`Java`，尽管`Java`线程是基于低级别的操作系统的能力来实现的。创造这样一个轻量级的执行框架的主要优势是能够让`Fork/Join`程序以一种更直观的方式编写，进而能够在各种支持`JVM`的系统上运行。
-![](https://upload-images.jianshu.io/upload_images/4685968-b588beda5de35d5c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-b588beda5de35d5c.png)
 `FJTask`框架是基于`Cilk`设计的一种演变。框架采用和操作系统把线程映射到`CPU`上相同的方式来把任务映射到线程上。只是他们会使用`Fork/Join`程序的简单性、常规性以及一致性来执行这种映射。尽管这些框架都能适应不能形式的并行程序，他们优化了`Fork/Join`的设计：
 
 *   一组工作者线程池是准备好的。每个工作线程都是标准的（『重量级』）处理存放在队列中任务的线程（这地方指的是`Thread`类的子类`FJTaskRunner`的实例对象）。通常情况下，工作线程应该与系统的处理器数量一致。在`Java`中，虚拟机和操作系统需要相互结合来完成线程到处理器的映射。然后对于计算密集型的运算来说，这种映射对于操作系统来说是一种相对简单的任务。任何合理的映射策略都会导致线程映射到不同的处理器。
@@ -89,7 +89,7 @@ class Fib extends FJTask {
 
 ### 2.1 `work−stealing`
 `Fork/Join`框架的核心在于轻量级调度机制。`FJTask`采用了`Cilk`的`work-stealing`所采用的基本调度策略：
-![](https://upload-images.jianshu.io/upload_images/4685968-1bef530ada2d84c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-1bef530ada2d84c3.png)
 *   每一个工作线程维护自己的调度队列中的可运行任务
 *   队列以双端队列的形式被维护，不仅支持后进先出 —— `LIFO`的`push`和`pop`操作，还支持先进先出 —— `FIFO`的`take`操作
 *   对于一个给定的工作线程来说，任务所产生的子任务将会被放入到工作者自己的双端队列中

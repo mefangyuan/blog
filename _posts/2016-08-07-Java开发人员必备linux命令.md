@@ -27,9 +27,9 @@ which [文件...]
 ```
 ### 实例
 使用指令"which"查看指令"bash"的绝对路径，输入如下命令：
-![](https://upload-images.jianshu.io/upload_images/4685968-f799e89b19bd48b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-f799e89b19bd48b3.png)
 上面的指令执行后，输出信息如下所示：
-![](https://upload-images.jianshu.io/upload_images/4685968-1f7df7394763eac3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-1f7df7394763eac3.png)
 
 
 
@@ -46,6 +46,7 @@ which [文件...]
 -l：不复制文件，只是生成链接文件。
 使用指令"cp"将当前目录"test/"下的所有文件复制到新目录"newtest"下
 `$ cp –r test/ newtest     `
+
 ## chmod 
 文件调用权限三级 : 文件拥有者、群组、其他
 利用 chmod 控制文件如何被他人所调用。
@@ -240,14 +241,14 @@ groupadd -g 344 linuxde
 ## ps 
 显示当前进程 (process) 的状态
 -  -A 显示进程信息
-![](https://upload-images.jianshu.io/upload_images/4685968-512aff1e593d1599.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-512aff1e593d1599.png)
 -  -u user  显示指定用户信息
-![](https://upload-images.jianshu.io/upload_images/4685968-7c7a71f3b9dfb4b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-7c7a71f3b9dfb4b3.png)
 - -ef  显示所有命令，连带命令行
-![](https://upload-images.jianshu.io/upload_images/4685968-e3ae42585f4e4276.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-e3ae42585f4e4276.png)
 - pstree |grep java
 查看进程树
-![](https://upload-images.jianshu.io/upload_images/4685968-bd8146a54c354da0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-bd8146a54c354da0.png)
 
 
 
@@ -682,7 +683,7 @@ Terminate input, or exit shell
 
 
 其实，控制字符都是可以通过stty命令更改的，可在终端中输入命令"stty -a"查看终端配置
-![](http://upload-images.jianshu.io/upload_images/4685968-e43eb0501196bbea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-e43eb0501196bbea.png)
 
 
 ## kill 
@@ -757,7 +758,7 @@ fuser最基本的用法是查询某个文件或目录被哪个进程使用：
 ```
 ip addr show  
 ```
-![结果](https://upload-images.jianshu.io/upload_images/4685968-3e2b6e161f3fd27c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![结果](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-3e2b6e161f3fd27c.png)
 # 软件包管理器
 apt-get是Debian、Ubuntu、Linux Mint、elementary OS等Linux发行版的默认软件包管理器
 apt-get purge packagename 等同于 apt-get remove packagename --purge

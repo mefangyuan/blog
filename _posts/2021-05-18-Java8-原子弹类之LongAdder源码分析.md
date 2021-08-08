@@ -9,19 +9,19 @@ tags: [并发]
 
 
 简单来说，这个类用于在多线程情况下的求和。
-![官方文档的说明](https://upload-images.jianshu.io/upload_images/4685968-06c72cfbe4dc4230.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![官方文档的说明](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-06c72cfbe4dc4230.png)
 
 从关键方法
 #add
-![](https://upload-images.jianshu.io/upload_images/4685968-bad92d53219ce616.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-bad92d53219ce616.png)
 包含了一个Cell数组，`Striped64`的一个内部类
-![](https://upload-images.jianshu.io/upload_images/4685968-d2d7d1ed29af4dc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-d2d7d1ed29af4dc0.png)
 `Padded variant of AtomicLong supporting only raw accesses plus CAS`
 即`AtomicLong`的填充变体且只支持原始访问和CAS
 有一个value变量，并且提供了一个cas方法更新value值
 
 接下来看第一个if语句，这句首先判断cells是否还没被初始化，并且尝试对value值进行cas操作。如果cells已经初始化并且cas操作失败，则运行if内部的语句。在进入第一个if语句之后紧接着是另外一个if，这个if有4个判断：cell[]数组是否初始化；cell[]数组虽然初始化了但是数组长度是否为0；该线程所对应的cell是否为null；尝试对该线程对应的cell单元进行cas更新是否失败，如果这些条件有一条为true，则运行最为核心的方法longAccumulate，下面列出这个方法，为了便于理解，直接将对其的分析写为注释。
-![JavaDoc](https://upload-images.jianshu.io/upload_images/4685968-9d6da5cb49142c38.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![JavaDoc](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-9d6da5cb49142c38.png)
 ```
 /**
   * 处理涉及初始化，调整大小，创建新Cell，和/或争用的更新案例

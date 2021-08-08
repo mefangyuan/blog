@@ -24,15 +24,15 @@ Java8中又对此类底层实现进行了优化，比如引入了红黑树的结
 在Java中,最基本的结构就是两种,一个是数组,另外一个是模拟指针(引用),所有的数据结构都可以用这两个基本结构来构造,HashMap也不例外.
 HashMap实际上是一个"链表散列"的数据结构,即数组和链表的结合体.
 
-![HashMap的结构](http://upload-images.jianshu.io/upload_images/4685968-cd353393ebc2ddf7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![HashMap的结构](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-cd353393ebc2ddf7.png)
 HashMap的主结构类似于一个数组,添加值时通过`key`确定储存位置.
 每个位置是一个Entry的数据结构,该结构可组成链表.
 当发生冲突时,相同hash值的键值对会组成链表.
 这种`数组+链表`的组合形式大部分情况下都能有不错的性能效果,Java6、7就是这样设计的.
-然而,在极端情况下,一组（比如经过精心设计的）键值对都发生了冲突，这时的哈希结构就会退化成一个链表，使HashMap性能急剧下降.
+然而,在极端情况下,一组（比如经过精心设计的)键值对都发生了冲突，这时的哈希结构就会退化成一个链表，使HashMap性能急剧下降.
 
 所以在Java8中,HashMap的结构实现变为数组+链表+红黑树
-![Java8 HashMap的结构](https://upload-images.jianshu.io/upload_images/4685968-0e08421c5183e8ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Java8 HashMap的结构](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-0e08421c5183e8ec.png)
 可以看出,HashMap底层就是一个数组结构
 数组中的每一项又是一个链表
 当新建一个HashMap时,就会初始化一个数组.
@@ -172,14 +172,14 @@ n | (n >>> 8) 导致n二进制表示的高9~16位经过运算值均为1
 
 可以看出,无论给定cap(cap < MAXIMUM_CAPACITY )的值是多少,经过以上运算,其值的二进制所有位都会是1.再将其加1,这时候这个值一定是2的幂次方.
 当然如果经过运算值大于MAXIMUM_CAPACITY,直接选用MAXIMUM_CAPACITY.
-![例子](http://upload-images.jianshu.io/upload_images/4685968-ffb968a6b1a70fa9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![例子](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-ffb968a6b1a70fa9.png)
 至此tableSizeFor如何保证cap为2的幂次方已经显而易见了,那么问题来了
 
 ## 4.1 **为什么cap要保持为2的幂次方？**
 主要与HashMap中的数据存储有关.
 
 在Java8中,HashMap中key的Hash值由Hash(key)方法计得
-![](https://upload-images.jianshu.io/upload_images/4685968-e8540295874593d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-e8540295874593d7.png)
 
 HashMap中存储数据table的index是由key的Hash值决定的.
 在HashMap存储数据时,我们期望数据能均匀分布,以防止哈希冲突.
@@ -188,14 +188,16 @@ HashMap中存储数据table的index是由key的Hash值决定的.
 >取余(%)操作 : 如果除数是2的幂次则等价于与其除数减一的与(&)操作.
 
 这也就解释了为什么一定要求cap要为2的幂次方.再来看看table的index的计算规则：
-![](https://upload-images.jianshu.io/upload_images/4685968-ddd3a2805bea14c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-ddd3a2805bea14c4.png)
  等价于:
+
 ```
  index = e.hash % newCap
 ```
 采用二进制位操作&,相对于%,能够提高运算效率,这就是cap的值被要求为2幂次的原因
-![](https://upload-images.jianshu.io/upload_images/4685968-5b47864c20546b8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![数据结构 & 参数与 JDK 7 / 8](https://upload-images.jianshu.io/upload_images/4685968-80fbc4a63ab41290.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-5b47864c20546b8d.png)
+![数据结构 & 参数与 JDK 7 / 8](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-80fbc4a63ab41290.png)
+
 ## 4.2 **Node类**
 
 ```
@@ -266,7 +268,7 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
 
 ## 4.4 hash方法
 Java 8中的散列值优化函数
-![](https://upload-images.jianshu.io/upload_images/4685968-2c057211c7051fd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-2c057211c7051fd9.png)
 只做一次16位右位移异或
 key.hashCode()函数调用的是key键值类型自带的哈希函数，返回int型散列值
 
@@ -274,7 +276,7 @@ key.hashCode()函数调用的是key键值类型自带的哈希函数，返回int
 但问题是一个40亿长度的数组，内存是放不下的.HashMap扩容之前的数组初始大小才16,所以这个散列值是不能直接拿来用的.
 用之前还要先做对数组的长度取模运算，得到的余数才能用来访问数组下标
 源码中模运算就是把散列值和数组长度做一个"与"操作，
-![](https://upload-images.jianshu.io/upload_images/4685968-4fcd8fe2039d26c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-4fcd8fe2039d26c5.png)
 这也正好解释了为什么HashMap的数组长度要取2的整次幂
 因为这样（数组长度-1）正好相当于一个“低位掩码”
 “与”操作的结果就是散列值的高位全部归零，只保留低位值，用来做数组下标访问
@@ -282,11 +284,11 @@ key.hashCode()函数调用的是key键值类型自带的哈希函数，返回int
 以初始长度16为例，16-1=15
 2进制表示是00000000 00000000 00001111
 和某散列值做“与”操作如下，结果就是截取了最低的四位值
-![](https://upload-images.jianshu.io/upload_images/4685968-89fececc1ca1c0b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-89fececc1ca1c0b7.png)
 但这时候问题就来了,这样就算我的散列值分布再松散,要是只取最后几位的话,碰撞也会很严重
 
 这时候“扰动函数”的价值就体现出来了
-![](https://upload-images.jianshu.io/upload_images/4685968-4825a9e897a9723b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-4825a9e897a9723b.png)
 右位移16位，正好是32位一半，自己的高半区和低半区做异或，就是为了混合原始hashCode的高位和低位，以此来加大低位的随机性
 而且混合后的低位掺杂了高位的部分特征，这样高位的信息也被变相保留下来。
 
@@ -301,11 +303,11 @@ newCap是2的幂,所以newCap - 1的高位全0
 这也就让高位参与到index的计算中来了,即降低了哈希冲突的风险又不会带来太大的性能问题
 
 ## 4.5 Put方法
-![](https://upload-images.jianshu.io/upload_images/4685968-ac54873c0837d3ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-ac54873c0837d3ba.png)
 
-![](https://upload-images.jianshu.io/upload_images/4685968-76c3c90239e1f15e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-76c3c90239e1f15e.png)
 
-![HashMap-put(k,v)](http://upload-images.jianshu.io/upload_images/4685968-0ccc069e89b40e4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![HashMap-put(k,v)](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-0ccc069e89b40e4c.png)
 ①.判断键值对数组table[i]是否为空或为null，否则执行resize()进行扩容
 
 ②.根据键值key计算hash值得到插入的数组索引i，如果table[i]==null，直接新建节点添加，转向⑥，如果table[i]不为空，转向③
@@ -382,9 +384,10 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
 ```
 在构造函数中最多也只是设置了initialCapacity、loadFactor的值,并没有初始化table,table的初始化工作是在put方法中进行的.
 ## 4.6 resize
-![](https://upload-images.jianshu.io/upload_images/4685968-fd60bec62611e900.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-fd60bec62611e900.png)
 扩容(resize)就是重新计算容量,向HashMap对象里不停的添加元素,内部的数组无法装载更多的元素时,就需要扩大数组的长度.
 当然Java里的数组是无法自动扩容的,方法是使用一个新的数组代替已有的容量小的数组
+
 ```
    /**
      * 该函数有2种使用情况：1.初始化哈希表 2.当前数组容量过小，需扩容
@@ -483,7 +486,7 @@ final Node<K,V>[] resize() {
         return newTab;
     }
 ```
-![图片发自简书App](http://upload-images.jianshu.io/upload_images/4685968-3edeccbe9811a4c3.jpg)
+![图片发自简书App](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-3edeccbe9811a4c3.jpg)
 
 
 
@@ -669,32 +672,35 @@ void transfer(Entry[] newTable) {
 >`设重新计算存储位置后不变，即扩容前 = 1->2->3，扩容后 = 3->2->1`
 
 此时若并发执行 put 操作，一旦出现扩容情况，则 容易出现 环形链表，从而在获取数据、遍历链表时 形成死循环（Infinite Loop），即死锁
-![](https://upload-images.jianshu.io/upload_images/4685968-f0fc8abf5588bda4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/4685968-33e1eb8ca4751050.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![](https://upload-images.jianshu.io/upload_images/4685968-52f69ae7fb5284dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![为什么 HashMap 中 String、Integer 这样的包装类适合作为 key 键](https://upload-images.jianshu.io/upload_images/4685968-7ab28eced8714fe6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-f0fc8abf5588bda4.png)
+![image.png](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-33e1eb8ca4751050.png)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-52f69ae7fb5284dc.png)
+![为什么 HashMap 中 String、Integer 这样的包装类适合作为 key 键](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-7ab28eced8714fe6.png)
+
 # 单线程rehash
 单线程情况下，rehash无问题
-[![HashMap rehash single thread](http://upload-images.jianshu.io/upload_images/4685968-a36b5a282b6ffefa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](http://www.jasongj.com/img/java/concurrenthashmap/single_thread_rehash.png)
+[![HashMap rehash single thread](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-a36b5a282b6ffefa.png)](http://www.jasongj.com/img/java/concurrenthashmap/single_thread_rehash.png)
+
 # 多线程并发下的rehash
 
 这里假设有两个线程同时执行了put操作并引发了rehash，执行了transfer方法，并假设线程一进入transfer方法并执行完next = e.next后，因为线程调度所分配时间片用完而“暂停”，此时线程二完成了transfer方法的执行。此时状态如下。
 
-[![HashMap rehash multi thread step 1](http://upload-images.jianshu.io/upload_images/4685968-c68bf4c25dfd8f2d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](http://www.jasongj.com/img/java/concurrenthashmap/multi_thread_rehash_1.png)
+[![HashMap rehash multi thread step 1](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-c68bf4c25dfd8f2d.png)](http://www.jasongj.com/img/java/concurrenthashmap/multi_thread_rehash_1.png)
 接着线程1被唤醒，继续执行第一轮循环的剩余部分
+
 ```
 e.next = newTable[1] = null
 newTable[1] = e = key(5)
 e = next = key(9)
 ```
 结果如下图所示
-[![HashMap rehash multi thread step 2](http://upload-images.jianshu.io/upload_images/4685968-39e50bf8b6272f1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](http://www.jasongj.com/img/java/concurrenthashmap/multi_thread_rehash_2.png) 
+[![HashMap rehash multi thread step 2](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-39e50bf8b6272f1d.png)](http://www.jasongj.com/img/java/concurrenthashmap/multi_thread_rehash_2.png) 
 
 接着执行下一轮循环，结果状态图如下所示
-[![HashMap rehash multi thread step 3](http://upload-images.jianshu.io/upload_images/4685968-4d3ecfe9177c8ec5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](http://www.jasongj.com/img/java/concurrenthashmap/multi_thread_rehash_3.png) 
+[![HashMap rehash multi thread step 3](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-4d3ecfe9177c8ec5.png)](http://www.jasongj.com/img/java/concurrenthashmap/multi_thread_rehash_3.png) 
 
 继续下一轮循环，结果状态图如下所示
-[![HashMap rehash multi thread step 4](http://upload-images.jianshu.io/upload_images/4685968-14ed3884c7e20cd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](http://www.jasongj.com/img/java/concurrenthashmap/multi_thread_rehash_4.png) 
+[![HashMap rehash multi thread step 4](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-14ed3884c7e20cd0.png)](http://www.jasongj.com/img/java/concurrenthashmap/multi_thread_rehash_4.png) 
 
 此时循环链表形成，并且key(11)无法加入到线程1的新数组。在下一次访问该链表时会出现死循环。
 # Fast-fail

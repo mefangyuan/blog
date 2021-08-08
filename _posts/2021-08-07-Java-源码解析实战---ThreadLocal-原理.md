@@ -19,7 +19,7 @@ tags: [并发]
 英语恰当的名称应该叫作:CopyValueIntoEveryThread
 
 示例代码
-![](https://upload-images.jianshu.io/upload_images/4685968-061b67d3b7dd0267.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://typoraimgbed.oss-cn-hangzhou.aliyuncs.com/img/4685968-061b67d3b7dd0267.png)
 该示例中,无 set 操作,那么初始值又是如何进入每个线程成为独立拷贝的呢?
 首先,虽然`ThreadLocal`在定义时重写了`initialValue()` ,但并非是在`BULLET_ NUMBER_ THREADLOCAL`对象加载静态变量的时候执行;
 而是每个线程在`ThreadLocal.get()`时都会执行到;
