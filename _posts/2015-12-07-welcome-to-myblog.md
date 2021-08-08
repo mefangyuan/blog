@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 欢迎来到方圆博客！
-subheading: 记录一个码农生活.
+subheading: 记录一个码农的开发日志.
 author: WangFangYuan
-categories: jekyll
+categories: markdown
 banner:
   video: https://vjs.zencdn.net/v/oceans.mp4
   loop: true
