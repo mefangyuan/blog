@@ -27,7 +27,7 @@
 title: 欢迎来到方圆技术博客
 email: mefangyuan@gmail.com
 author: Wang FangYuan
-copyright: Copyright © 1970-2021
+copyright: Copyright © 2014-2021
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -55,7 +55,7 @@ yat:
 # sitemap: false
 
 # If you want to change site language, you can set lang option
-# lang: "en"  # default lang is en
+lang: "zh-CN"  # default lang is en
 
 # Translate languges
 # langs refer to https://cloud.google.com/translate/docs/languages
