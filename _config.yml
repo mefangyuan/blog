@@ -137,11 +137,11 @@ yat:
 #   - about.md
 
 # Page default value
-# defaults:
-#   home:
-#     heading: "Your awesome heading"
-#     subheading: "Your awesome subheading"
-#     banner: "Your image url"
+defaults:
+  home:
+    heading: "相信美好生活一定会发生"
+    subheading: "虽然过去不能改变，未来可以。"
+    banner: "Your image url"
 
 # Banner default settings
 # These banner settings are for global banner default, but you can also
